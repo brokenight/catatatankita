@@ -12,15 +12,15 @@ abstract class SettingViewModel extends State<SettingScreen> {
     super.initState();
   }
   final Dio _dio = Dio();
-  final _baseUrl = 'https://catatankita-a86f6.web.app/';
   String? linkApk;
   String? linkGit;
   bool isLoading = true;
 
   Future<Kontak?> getKontak() async {
+    isLoading = true;
     Kontak? kontak;
     try {
-      Response kontakData = await _dio.get(_baseUrl + 'kontak');
+      Response kontakData = await _dio.get('https://catatankita-a86f6.web.app/kontak');
       isLoading = false;
       print('Kontak Info: ${kontakData.data}');
       kontak = Kontak.fromJson(kontakData.data);

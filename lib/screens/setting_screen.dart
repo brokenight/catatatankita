@@ -18,7 +18,7 @@ class _SettingScreenState extends SettingViewModel {
           backgroundColor: Colors.white,
           appBar: AppBar(
             centerTitle: true,
-            title: Text('Setting'),
+            title: Text('Kontak'),
           ),
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
@@ -26,53 +26,56 @@ class _SettingScreenState extends SettingViewModel {
               Get.to(EditCatatanScreen());
             },
           ),
-          body: Container(
-            child: Padding(
-                padding: EdgeInsets.all(5),
-                child:isLoading ? Center(child: CircularProgressIndicator()) :
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                                style: TextStyle(color: Colors.black, fontSize: 16, ),
-                                text:
-                                'Link APK : '),
-                            TextSpan(
-                              style: TextStyle(color: Colors.blue, fontSize: 18),
-                              text: linkApk,
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  launchURL(linkApk ?? '');
-                                },
-                            ),
-                          ],
+          body: RefreshIndicator(
+            onRefresh: getKontak,
+            child: Container(
+              child: Padding(
+                  padding: EdgeInsets.all(5),
+                  child:isLoading ? Center(child: CircularProgressIndicator()) :
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  style: TextStyle(color: Colors.black, fontSize: 16, ),
+                                  text:
+                                  'Link APK : '),
+                              TextSpan(
+                                style: TextStyle(color: Colors.blue, fontSize: 18),
+                                text: linkApk,
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    launchURL(linkApk ?? '');
+                                  },
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                                style: TextStyle(color: Colors.black, fontSize: 16, ),
-                                text:
-                                'Link Git : '),
-                            TextSpan(
-                              style: TextStyle(color: Colors.blue, fontSize: 18),
-                              text: linkGit,
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  launchURL(linkGit ?? '');
-                                },
-                            ),
-                          ],
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  style: TextStyle(color: Colors.black, fontSize: 16, ),
+                                  text:
+                                  'Link Git : '),
+                              TextSpan(
+                                style: TextStyle(color: Colors.blue, fontSize: 18),
+                                text: linkGit,
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    launchURL(linkGit ?? '');
+                                  },
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+              ),
             ),
           ),
           drawer: Drawer(
