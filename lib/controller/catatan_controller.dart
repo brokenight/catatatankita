@@ -10,8 +10,8 @@ class CatatanController extends GetxController{
   @override
   void onInit() {
     List? storedNotes=GetStorage().read<List>('notes');
-    if(storedNotes!.isNotEmpty){
-      notes=storedNotes.map((e) => Catatan.fromJson(e)).toList().obs;
+    if(!storedNotes.isNull){
+      notes=storedNotes!.map((e) => Catatan.fromJson(e)).toList().obs;
     }
     ever(notes, (_){
       GetStorage().write('notes',notes.toList());
